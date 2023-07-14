@@ -1,0 +1,33 @@
+name: Master CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Deno v1.35.1
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.35.1
+
+      - name: Setup LCOV        
+        run: sudo apt install -y lcov
+
+      - name: Verify formatting
+        run: deno task fmt
+
+      - name: Run linter
+        run: deno lint
