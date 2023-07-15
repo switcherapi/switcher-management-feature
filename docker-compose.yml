@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    image: trackerforce/switcher-management-feature:latest
+    container_name: switcher-management-feature
+    command: ["run", "--allow-net", "--allow-env", "index.ts"]
+    ports:
+      - 4000:4000
+    environment:
+      - APP_PORT=4000
