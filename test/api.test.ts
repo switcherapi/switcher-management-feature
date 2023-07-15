@@ -16,20 +16,18 @@ Deno.test({
 
 Deno.test({
   name: 'API Suite - it should return ok - ssl enabled',
-  async fn(t) {
-    await t.step('given - env vars', async () => {
-      Deno.env.set('SSL_CERT', 'cert');
-      Deno.env.set('SSL_KEY', 'key');
-    });
+  async fn() {
+    //given
+    Deno.env.set('SSL_CERT', 'cert');
+    Deno.env.set('SSL_KEY', 'key');
 
-    await t.step('test', async () => {
-      const request = await superoak(app);
-      const response = await request.get('/api/check').expect(200);
+    //test
+    const request = await superoak(app);
+    const response = await request.get('/api/check').expect(200);
 
-      assertEquals(response.body, {
-        status: 'ok',
-        sslEnabled: true,
-      });
+    assertEquals(response.body, {
+      status: 'ok',
+      sslEnabled: true,
     });
   },
 });
