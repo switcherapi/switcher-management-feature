@@ -1,7 +1,7 @@
 import app from './app.ts';
 import { load } from './deps.ts';
 
-await load({ export: true });
+await load({ export: true, envPath: Deno.env.get('ENV_PATH') || '.env' });
 
 const APP_PORT = Deno.env.get('APP_PORT') || 4000;
 const SSL_CERT = Deno.env.get('SSL_CERT');
