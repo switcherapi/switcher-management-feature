@@ -1,10 +1,8 @@
-name: Master CI
+name: Release CI
 
 on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+  release:
+    types: [ created ]
 
 jobs:
   build-test:
@@ -23,9 +21,6 @@ jobs:
         with:
           deno-version: v1.35.1
 
-      - name: Setup LCOV        
-        run: sudo apt install -y lcov
-
       - name: Verify formatting
         run: deno task fmt
 
@@ -33,27 +28,23 @@ jobs:
         run: deno lint
 
       - name: Run tests and coverage
-        run: deno task cover
-
-      - name: Fix LCOV output for SonarCloud        
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/report.lcov
-
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+        run: deno task test
+  
   docker:
     name: Publish Docker Image
     needs: [ build-test ]
     runs-on: ubuntu-latest
-    if: success() && github.ref == 'refs/heads/master'
-
-    outputs:
-        digest: ${{ steps.docker_build.outputs.digest }}
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: trackerforce/switcher-management-feature
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -67,9 +58,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        id: docker_build
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: trackerforce/switcher-management-feature:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
