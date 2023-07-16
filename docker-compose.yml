@@ -1,11 +1,25 @@
 version: '3.8'
 
+# TLS Enabled
+# volumes:
+#   switcherapi-tls:
+#     driver: local
+#     driver_opts:
+#       o: bind
+#       type: none
+#       device: "/data/certs"
+
 services:
   app:
     image: trackerforce/switcher-management-feature:latest
     container_name: switcher-management-feature
-    command: ["run", "--allow-net", "--allow-env", "index.ts"]
+    command: ["run", "--allow-net", "--allow-env", "--allow-read", "index.ts"]
     ports:
       - 4000:4000
     environment:
       - APP_PORT=4000
+      - RELEASE_TIME=today
+      # - SSL_CERT=/etc/ssl/certs/tls.crt
+      # - SSL_KEY=/etc/ssl/certs/tls.pem
+    # volumes:
+    #   - switcherapi-tls:/etc/ssl/certs
