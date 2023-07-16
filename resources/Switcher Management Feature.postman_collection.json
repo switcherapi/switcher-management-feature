@@ -1,0 +1,28 @@
+{
+  "info": {
+    "_postman_id": "2717ecc7-b90b-4271-b74d-9a55d86bd7f5",
+    "name": "Switcher Management Feature",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9436108"
+  },
+  "item": [
+    {
+      "name": "API Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/api/check",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "check"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
