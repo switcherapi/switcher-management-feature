@@ -8,7 +8,7 @@ export default class FeatureService {
     await this.switcherClient.initialize();
   }
 
-  async isFeatureEnabled(featureName: string, params?: _Param) {
+  async isFeatureEnabled(featureName: string, params?: Param) {
     const switcher = Switcher.factory();
     const entries = [];
 
@@ -20,6 +20,6 @@ export default class FeatureService {
   }
 }
 
-class _Param {
-  constructor(public value: string) {}
+interface Param {
+  value: string;
 }
