@@ -1,0 +1,25 @@
+{
+    "data": {
+        "domain": {
+            "name": "Switcher API",
+            "version": 0,
+            "activated": true,
+            "group": [
+                {
+                    "name": "Features UI",
+                    "activated": true,
+                    "config": [
+                        {
+                            "key": "PLACEHOLDER",
+                            "activated": true,
+                            "strategies": [],
+                            "components": [
+                                "switcher-management"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
