@@ -15,7 +15,7 @@ Deno.test({
     //test
     const featureService = new FeatureService(new SwitcherClient(false));
     await featureService.initialize();
-    
+
     const response = await featureService.isFeatureEnabled(featureName);
 
     //assert
