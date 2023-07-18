@@ -31,4 +31,8 @@ export default class SwitcherClient {
 
     return true;
   }
+
+  terminateScheduler() {
+    Switcher.terminateSnapshotAutoUpdate();
+  }
 }
