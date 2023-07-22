@@ -11,6 +11,6 @@ COPY /src .
 
 RUN addgroup -S app && \
     adduser -S app -G app && \
-    chown -R app:app $APP_HOME
+    chown -R app:app $APP_HOME /deno-dir
 
 USER app
