@@ -1,5 +1,4 @@
-import SwitcherClient from '../src/config/switcher-client.ts';
-import FeatureService from '../src/services/feature.ts';
+import featureService from '../src/services/feature.ts';
 import { assert, assertFalse, Switcher } from './deps.ts';
 
 const testTitle = (description: string) => `Feature service - ${description}`;
@@ -12,11 +11,12 @@ Deno.test({
     const featureName = 'FEATURE_NAME';
 
     //test
-    const featureService = new FeatureService(new SwitcherClient());
+    featureService.initialize(false);
     const response = await featureService.isFeatureEnabled(featureName);
 
     //assert
     assertFalse(response);
+    featureService.terminateSnapshotAutoUpdate();
   },
 });
 
@@ -28,10 +28,11 @@ Deno.test({
     const featureName = 'FEATURE_NAME';
 
     //test
-    const featureService = new FeatureService(new SwitcherClient());
+    featureService.initialize(false);
     const response = await featureService.isFeatureEnabled(featureName, { value: 'value' });
 
     //assert
     assert(response);
+    featureService.terminateSnapshotAutoUpdate();
   },
 });

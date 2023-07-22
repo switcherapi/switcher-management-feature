@@ -1,29 +1,32 @@
-import SwitcherClient from '../src/config/switcher-client.ts';
-import FeatureService from '../src/services/feature.ts';
+import featureService from '../src/services/feature.ts';
 import { assert } from './deps.ts';
 
-const testTitle = (description: string) => `Feature service - ${description}`;
+const testTitle = (description: string) => `Feature service integrated - ${description}`;
+const teardown = () => {
+  Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
+  featureService.terminateSnapshotAutoUpdate();
+};
+
+const setupDenoEnv = () => {
+  Deno.env.set('SWITCHER_ENVIRONMENT', 'test');
+  Deno.env.set('SWITCHER_OFFLINE', 'true');
+  Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '3000');
+};
 
 Deno.test({
   name: testTitle('it should return feature enabled - from snapshot cache'),
   async fn() {
     //given
-    Deno.env.set('SWITCHER_ENVIRONMENT', 'test');
-    Deno.env.set('SWITCHER_OFFLINE', 'true');
-    Deno.env.set('SWITCHER_UPDATE_INTERVAL', '3000');
-    const switcherClient = new SwitcherClient(false);
-    const featureName = 'PLACEHOLDER';
+    setupDenoEnv();
+    await featureService.initialize(false);
 
     //test
-    const featureService = new FeatureService(switcherClient);
-    await featureService.initialize();
-
-    const response = await featureService.isFeatureEnabled(featureName);
+    const response = await featureService.isFeatureEnabled('PLACEHOLDER');
 
     //assert
     assert(response);
 
     //teardown
-    switcherClient.terminateScheduler();
+    teardown();
   },
 });
