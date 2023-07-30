@@ -1,7 +1,8 @@
 {
   "tasks": {
-    "run": "ENV_PATH=.env deno run --allow-net --allow-env --allow-read --allow-write src/index.ts",
-    "run:dev": "ENV_PATH=.env.dev deno run --allow-net --allow-env --allow-read --allow-write src/index.ts",
+    "run": "deno run --unstable --allow-net --allow-env --allow-read --allow-write src/index.ts",
+    "run:dev": "ENV_PATH=.env.dev deno task run",
+    "run:prod": "ENV_PATH=.env deno task run",
     "cache-reload": "deno cache --reload --lock=deno.lock --lock-write src/index.ts",
     "fmt": "deno fmt src/ --options-single-quote --options-line-width=120 --check",
     "fmt:fix": "deno fmt test/ src/ --options-single-quote --options-line-width=120",
