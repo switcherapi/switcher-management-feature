@@ -9,7 +9,7 @@ const content = 'some content';
 Deno.test({
   name: testTitle('it should log INFO'),
   fn() {
-    Deno.env.set('LOG_LEVEL', 'INFO');
+    Deno.env.delete('LOG_LEVEL');
     const log = logger('INFO', component, content);
     assert(log);
   },
