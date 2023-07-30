@@ -1,5 +1,5 @@
 import { bold, Context, cyan, green, Next } from '../deps.ts';
-import { responseError } from '../utils.ts';
+import { logger, responseError } from '../utils.ts';
 
 export const responseTime = async (context: Context, next: Next) => {
   const start = Date.now();
@@ -11,7 +11,10 @@ export const responseTime = async (context: Context, next: Next) => {
 export const responseTimeLog = async (context: Context, next: Next) => {
   await next();
   const rt = context.response.headers.get('X-Response-Time');
-  console.log(
+
+  logger(
+    'DEBUG',
+    'Route',
     `${green(context.request.method)} ${cyan(decodeURIComponent(context.request.url.pathname))} - ${bold(String(rt))}`,
   );
 };
