@@ -1,5 +1,6 @@
+import { assertEquals } from 'https://deno.land/std@0.194.0/testing/asserts.ts';
 import app from '../src/app.ts';
-import { assert, assertFalse, superoak, Switcher } from './deps.ts';
+import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from './deps.ts';
 
 const testTitle = (description: string) => `Feature route - ${description}`;
 
@@ -32,13 +33,29 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error'),
+  name: testTitle('it should return error - cannot access API'),
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
     const request = await superoak(app);
-    await request.post('/')
+    const res = await request.post('/')
       .send({ feature: 'FEATURE_NAME' })
       .expect(500);
+
+    assertEquals(res.body.error, 'Something went wrong: {"error":"Unable to load a key FEATURE_NAME"}');
+  },
+});
+
+Deno.test({
+  name: testTitle('it should return error - feature not provided'),
+  async fn() {
+    Switcher.forget('FEATURE_NAME');
+
+    const request = await superoak(app);
+    const res = await request.post('/')
+      .send()
+      .expect(400);
+
+    assertObjectMatch(res.body, { error: 'Feature name is required' });
   },
 });

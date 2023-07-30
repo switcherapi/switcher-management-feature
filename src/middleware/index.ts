@@ -22,7 +22,7 @@ export const responseTimeLog = async (context: Context, next: Next) => {
 export const requestSanitizer = async (context: Context, next: Next) => {
   const reqBody = await context.request.body({ type: 'json' }).value;
 
-  if (!reqBody.feature) {
+  if (!reqBody?.feature) {
     return responseError(context, new Error('Feature name is required'), 400);
   }
 
