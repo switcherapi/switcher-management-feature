@@ -2,8 +2,8 @@ import { Switcher } from '../deps.ts';
 import { logger } from '../utils.ts';
 
 export default class SwitcherClient {
-  private domain = 'Switcher API';
-  private component = 'switcher-management';
+  private domain = Deno.env.get('SWITCHER_DOMAIN') || 'Switcher API';
+  private component = Deno.env.get('SWITCHER_COMPONENT') || 'switcher-management';
   private apiKey = Deno.env.get('SWITCHER_API_KEY');
   private url = Deno.env.get('SWITCHER_URL');
   private environment = Deno.env.get('SWITCHER_ENVIRONMENT') || 'default';
