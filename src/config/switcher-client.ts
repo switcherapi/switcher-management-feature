@@ -19,6 +19,7 @@ export default class SwitcherClient {
     logger('INFO', 'SwitcherClient', 'Initializing Switcher Client');
     logger('INFO', 'SwitcherClient', {
       domain: this.domain,
+      component: this.component,
       apiKey: this.apiKey?.length ? '********' : 'Not set',
       url: this.url,
       environment: this.environment,
@@ -27,6 +28,7 @@ export default class SwitcherClient {
       snapshotLocation: this.snapshotLocation,
       updateInterval: this.updateInterval,
       certPath: this.certPath,
+      fetchOnline: this.fetchOnline,
     });
 
     Switcher.buildContext({
