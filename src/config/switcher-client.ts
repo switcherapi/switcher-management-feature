@@ -10,6 +10,7 @@ export default class SwitcherClient {
   private offline = Deno.env.get('SWITCHER_OFFLINE') === 'true';
   private regexSafe = Deno.env.get('SWITCHER_REGEX_SAFE') === 'true' || false;
   private snapshotLocation = Deno.env.get('SWITCHER_SNAPSHOT_LOCATION') || './snapshot/';
+  private snapshotStoreFile = Deno.env.get('SWITCHER_SNAPSHOT_STORE_FILE') === 'true' || false;
   private updateInterval = Deno.env.get('SWITCHER_SNAPSHOT_UPDATE_INTERVAL') || undefined;
   private certPath = Deno.env.get('SWITCHER_CERT_PATH') || undefined;
 
@@ -26,6 +27,7 @@ export default class SwitcherClient {
       offline: this.offline,
       regexSafe: this.regexSafe,
       snapshotLocation: this.snapshotLocation,
+      snapshotStoreFile: this.snapshotStoreFile,
       updateInterval: this.updateInterval,
       certPath: this.certPath,
       fetchOnline: this.fetchOnline,
@@ -40,13 +42,14 @@ export default class SwitcherClient {
     }, {
       offline: this.offline,
       snapshotLocation: this.snapshotLocation,
+      snapshotStoreFile: this.snapshotStoreFile,
       regexSafe: this.regexSafe,
       certPath: this.certPath,
     });
 
-    await Switcher.loadSnapshot(false, this.fetchOnline, (version) => {
+    await Switcher.loadSnapshot(false, this.fetchOnline).then((version) => {
       logger('INFO', 'SwitcherClient', `Snapshot version ${version} loaded`);
-    }, (err) => {
+    }).catch((err) => {
       logger('ERROR', 'SwitcherClient', `Failed to load snapshot: ${err}`);
     });
 
