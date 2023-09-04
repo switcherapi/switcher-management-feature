@@ -9,9 +9,9 @@ export default class SwitcherClient {
   private environment = Deno.env.get('SWITCHER_ENVIRONMENT') || 'default';
   private offline = Deno.env.get('SWITCHER_OFFLINE') === 'true';
   private regexSafe = Deno.env.get('SWITCHER_REGEX_SAFE') === 'true' || false;
-  private snapshotLocation = Deno.env.get('SWITCHER_SNAPSHOT_LOCATION') || './snapshot/';
-  private updateInterval = Deno.env.get('SWITCHER_SNAPSHOT_UPDATE_INTERVAL') || undefined;
-  private certPath = Deno.env.get('SWITCHER_CERT_PATH') || undefined;
+  private snapshotLocation = Deno.env.get('SWITCHER_SNAPSHOT_LOCATION');
+  private updateInterval = Deno.env.get('SWITCHER_SNAPSHOT_UPDATE_INTERVAL');
+  private certPath = Deno.env.get('SWITCHER_CERT_PATH');
 
   constructor(public fetchOnline = true) {}
 
