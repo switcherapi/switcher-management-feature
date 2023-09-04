@@ -10,7 +10,7 @@ const teardown = () => {
 const setupDenoEnv = () => {
   Deno.env.set('SWITCHER_ENVIRONMENT', 'test');
   Deno.env.set('SWITCHER_OFFLINE', 'true');
-  Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '3000');
+  Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '3');
 };
 
 Deno.test({
