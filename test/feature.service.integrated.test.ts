@@ -1,5 +1,7 @@
-import featureService from '../src/services/feature.ts';
+import FeatureService from '../src/services/feature.ts';
 import { assert } from './deps.ts';
+
+const featureService = new FeatureService();
 
 const testTitle = (description: string) => `Feature service integrated - ${description}`;
 const teardown = () => {
