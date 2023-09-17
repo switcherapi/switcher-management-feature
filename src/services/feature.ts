@@ -2,11 +2,8 @@ import SwitcherClient from '../config/switcher-client.ts';
 import { checkValue, Switcher } from '../deps.ts';
 
 class FeatureService {
-  switcherClient?: SwitcherClient;
-
   async initialize(fetchOnline: boolean) {
-    this.switcherClient = new SwitcherClient(fetchOnline);
-    await this.switcherClient.initialize();
+    await SwitcherClient.initialize(fetchOnline);
   }
 
   async isFeatureEnabled(featureName: string, params?: Param) {
@@ -21,7 +18,7 @@ class FeatureService {
   }
 
   terminateSnapshotAutoUpdate() {
-    this.switcherClient?.terminateSnapshotAutoUpdate();
+    SwitcherClient.terminateSnapshotAutoUpdate();
   }
 }
 
@@ -29,4 +26,4 @@ interface Param {
   value: string;
 }
 
-export default new FeatureService();
+export default FeatureService;

@@ -1,10 +1,11 @@
 import { Context, Router } from '../deps.ts';
 import { FeatureResponseDto } from '../dto/feature-response.ts';
 import { requestSanitizer } from '../middleware/index.ts';
-import service from '../services/feature.ts';
+import FeatureService from '../services/feature.ts';
 import { responseError, responseSuccess } from '../utils.ts';
 
 const router = new Router();
+const service = new FeatureService();
 
 router.post('/', requestSanitizer, async (context: Context) => {
   try {
