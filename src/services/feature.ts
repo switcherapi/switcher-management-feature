@@ -2,7 +2,6 @@ import SwitcherClient from '../config/switcher-client.ts';
 import { checkValue, Switcher } from '../deps.ts';
 
 class FeatureService {
-
   async initialize(fetchOnline: boolean) {
     await SwitcherClient.initialize(fetchOnline);
   }

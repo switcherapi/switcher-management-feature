@@ -32,8 +32,12 @@ export default class SwitcherClient {
       fetchOnline,
     });
 
-    Switcher.buildContext({ url, apiKey, domain, component, environment }, 
-      { offline, snapshotLocation, regexSafe, certPath });
+    Switcher.buildContext({ url, apiKey, domain, component, environment }, {
+      offline,
+      snapshotLocation,
+      regexSafe,
+      certPath,
+    });
 
     await Switcher.loadSnapshot(false, fetchOnline).then((version) => {
       logger('INFO', 'SwitcherClient', `Snapshot version ${version} loaded`);
