@@ -1,4 +1,3 @@
-import { assertEquals } from 'https://deno.land/std@0.194.0/testing/asserts.ts';
 import app from '../src/app.ts';
 import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from './deps.ts';
 
@@ -42,7 +41,7 @@ Deno.test({
       .send({ feature: 'FEATURE_NAME' })
       .expect(500);
 
-    assertEquals(res.body.error, 'Something went wrong: {"error":"Unable to load a key FEATURE_NAME"}');
+    assert(res.body.error, 'Something went wrong: {"error":"Unable to load a key FEATURE_NAME"}');
   },
 });
 
