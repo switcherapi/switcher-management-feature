@@ -1,5 +1,5 @@
-import FeatureService from '../src/services/feature.ts';
-import { assert, assertFalse, Switcher } from './deps.ts';
+import FeatureService from '../../src/services/feature.ts';
+import { assert, assertFalse, Switcher } from '../deps.ts';
 
 const featureService = new FeatureService();
 const testTitle = (description: string) => `Feature service - ${description}`;

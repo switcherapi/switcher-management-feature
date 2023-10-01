@@ -1,5 +1,5 @@
 import { bold, Context, cyan, green, Next } from '../deps.ts';
-import { logger, responseError } from '../utils.ts';
+import { logger } from '../utils.ts';
 
 export const responseTime = async (context: Context, next: Next) => {
   const start = Date.now();
@@ -17,19 +17,4 @@ export const responseTimeLog = async (context: Context, next: Next) => {
     'Route',
     `${green(context.request.method)} ${cyan(decodeURIComponent(context.request.url.pathname))} - ${bold(String(rt))}`,
   );
-};
-
-export const requestSanitizer = async (context: Context, next: Next) => {
-  const reqBody = await context.request.body({ type: 'json' }).value;
-
-  if (!reqBody?.feature) {
-    return responseError(context, new Error('Feature name is required'), 400);
-  }
-
-  context.state.request = {
-    feature: decodeURIComponent(reqBody.feature),
-    params: decodeURIComponent(reqBody.params?.value),
-  };
-
-  await next();
 };
