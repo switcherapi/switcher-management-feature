@@ -1,5 +1,5 @@
-import FeatureService from '../src/services/feature.ts';
-import { assert } from './deps.ts';
+import FeatureService from '../../src/services/feature.ts';
+import { assert } from '../deps.ts';
 
 const featureService = new FeatureService();
 

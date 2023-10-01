@@ -1,5 +1,5 @@
-import app from '../src/app.ts';
-import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from './deps.ts';
+import app from '../../src/app.ts';
+import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from '../deps.ts';
 
 const testTitle = (description: string) => `Feature route - ${description}`;
 
@@ -46,7 +46,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - feature not provided'),
+  name: testTitle('it should return error - body request not provided'),
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
@@ -55,6 +55,34 @@ Deno.test({
       .send()
       .expect(400);
 
-    assertObjectMatch(res.body, { error: 'Feature name is required' });
+    assertObjectMatch(res.body, { error: 'Invalid request body' });
+  },
+});
+
+Deno.test({
+  name: testTitle('it should return error - feature name not provided'),
+  async fn() {
+    Switcher.forget('FEATURE_NAME');
+
+    const request = await superoak(app);
+    const res = await request.post('/')
+      .send({ feature: '' })
+      .expect(400);
+
+    assertObjectMatch(res.body, { error: 'Invalid feature input. Cause: it is empty.' });
+  },
+});
+
+Deno.test({
+  name: testTitle('it should return error - params has invalid length'),
+  async fn() {
+    Switcher.forget('FEATURE_NAME');
+
+    const request = await superoak(app);
+    const res = await request.post('/')
+      .send({ feature: 'FEATURE_NAME', params: { value: 'VALUE'.repeat(100) } })
+      .expect(422);
+
+    assertObjectMatch(res.body, { error: 'Invalid params.value input. Cause: it is greater than 100 characters.' });
   },
 });
