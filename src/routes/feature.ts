@@ -1,5 +1,5 @@
 import { Context, Router } from '../deps.ts';
-import { toFeatureResponseDto, toFeatureRequestDto } from '../dto/mapper.ts';
+import { toFeatureRequestDto, toFeatureResponseDto } from '../dto/mapper.ts';
 import FeatureService from '../services/feature.ts';
 import { responseError, responseSuccess } from '../utils.ts';
 import Validator from '../middleware/validator.ts';
