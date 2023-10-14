@@ -45,22 +45,6 @@ export const logger = (level: string, component: string, content: string | objec
   return data;
 };
 
-export function getParam(params: URLSearchParams, key: string, or: string | number) {
-  if (params.has(key)) {
-    return params.get(key)?.trim()!;
-  }
-
-  return or;
-}
-
-export function getBooleanParam(params: URLSearchParams, key: string, or: boolean) {
-  if (params.has(key)) {
-    return params.get(key)?.trim() === 'true';
-  }
-
-  return or;
-}
-
 export function getEnv<T>(key: string, or: T): T {
   return Deno.env.get(key) as T || or;
 }
