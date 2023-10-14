@@ -11,7 +11,7 @@ await load({ export: true, envPath: getEnv('ENV_PATH', '.env') });
 const app = new Application();
 const helmet = new Helmet();
 const service = new FeatureService();
-await service.initialize(getEnv('SWITCHER_SNAPSHOT_LOAD', 'true') === 'true');
+await service.initialize(getEnv('SWITCHER_SNAPSHOT_LOAD', true));
 
 app.use(helmet.middleware());
 app.use(responseTimeLog);
