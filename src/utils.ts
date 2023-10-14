@@ -46,5 +46,9 @@ export const logger = (level: string, component: string, content: string | objec
 };
 
 export function getEnv<T>(key: string, or: T): T {
+  if (typeof or === 'boolean') {
+    return Boolean(Deno.env.get(key) === 'true') as T;
+  }
+
   return Deno.env.get(key) as T || or;
 }

@@ -11,8 +11,8 @@ export default class SwitcherClient {
     const apiKey = getEnv('SWITCHER_API_KEY', '');
     const url = getEnv('SWITCHER_URL', 'Not set');
     const environment = getEnv('SWITCHER_ENVIRONMENT', 'default');
-    const offline = getEnv('SWITCHER_OFFLINE', 'true') === 'true';
-    const regexSafe = getEnv('SWITCHER_REGEX_SAFE', 'true') === 'true' || false;
+    const offline = getEnv('SWITCHER_OFFLINE', true);
+    const regexSafe = getEnv('SWITCHER_REGEX_SAFE', false);
     const snapshotLocation = getEnv('SWITCHER_SNAPSHOT_LOCATION', '');
     const updateInterval = getEnv('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
     const certPath = getEnv('SWITCHER_CERT_PATH', '');
