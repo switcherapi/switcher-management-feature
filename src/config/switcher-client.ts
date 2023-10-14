@@ -1,21 +1,21 @@
 import { Switcher } from '../deps.ts';
-import { logger } from '../utils.ts';
+import { getEnv, logger } from '../utils.ts';
 
 /**
  * SwitcherClient wraps Switcher SDK settings and initialization.
  */
 export default class SwitcherClient {
   static async initialize(fetchOnline = true) {
-    const domain = Deno.env.get('SWITCHER_DOMAIN') || 'Switcher API';
-    const component = Deno.env.get('SWITCHER_COMPONENT') || 'switcher-management';
-    const apiKey = Deno.env.get('SWITCHER_API_KEY');
-    const url = Deno.env.get('SWITCHER_URL');
-    const environment = Deno.env.get('SWITCHER_ENVIRONMENT') || 'default';
-    const offline = Deno.env.get('SWITCHER_OFFLINE') === 'true';
-    const regexSafe = Deno.env.get('SWITCHER_REGEX_SAFE') === 'true' || false;
-    const snapshotLocation = Deno.env.get('SWITCHER_SNAPSHOT_LOCATION');
-    const updateInterval = Deno.env.get('SWITCHER_SNAPSHOT_UPDATE_INTERVAL');
-    const certPath = Deno.env.get('SWITCHER_CERT_PATH');
+    const domain = getEnv('SWITCHER_DOMAIN', 'Switcher API');
+    const component = getEnv('SWITCHER_COMPONENT', 'switcher-management');
+    const apiKey = getEnv('SWITCHER_API_KEY', '');
+    const url = getEnv('SWITCHER_URL', 'Not set');
+    const environment = getEnv('SWITCHER_ENVIRONMENT', 'default');
+    const offline = getEnv('SWITCHER_OFFLINE', 'true') === 'true';
+    const regexSafe = getEnv('SWITCHER_REGEX_SAFE', 'true') === 'true' || false;
+    const snapshotLocation = getEnv('SWITCHER_SNAPSHOT_LOCATION', '');
+    const updateInterval = getEnv('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
+    const certPath = getEnv('SWITCHER_CERT_PATH', '');
 
     logger('INFO', 'SwitcherClient', 'Initializing Switcher Client');
     logger('INFO', 'SwitcherClient', {

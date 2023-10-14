@@ -22,7 +22,7 @@ export const responseError = ({ response }: Context, error: Error, code: number,
 export const logger = (level: string, component: string, content: string | object, showStack?: boolean) => {
   let data;
 
-  const currentLevel = Deno.env.get('LOG_LEVEL') || 'INFO';
+  const currentLevel = getEnv('LOG_LEVEL', 'INFO');
   const levels = Object.keys(Level);
   const currentLevelIndex = levels.indexOf(currentLevel);
   const levelIndex = levels.indexOf(level);
@@ -44,3 +44,7 @@ export const logger = (level: string, component: string, content: string | objec
 
   return data;
 };
+
+export function getEnv<T>(key: string, or: T): T {
+  return Deno.env.get(key) as T || or;
+}
