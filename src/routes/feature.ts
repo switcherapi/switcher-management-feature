@@ -5,7 +5,7 @@ import { responseError, responseSuccess } from '../utils.ts';
 import Validator from '../middleware/validator.ts';
 
 const router = new Router();
-const service = new FeatureService();
+let service: FeatureService;
 
 const { checkBody, hasLenght, required } = Validator;
 
@@ -18,12 +18,20 @@ router.post(
   async (context: Context) => {
     try {
       const request = await toFeatureRequestDto(context);
-      const status = await service.isFeatureEnabled(request.feature, { value: request?.value });
+      const status = await getService().isFeatureEnabled(request.feature, { value: request?.value });
       responseSuccess(context, toFeatureResponseDto(status));
     } catch (error) {
       responseError(context, error, 500, true);
     }
   },
 );
+
+const getService = () => {
+  if (!service) {
+    service = new FeatureService();
+  }
+
+  return service;
+};
 
 export default router;

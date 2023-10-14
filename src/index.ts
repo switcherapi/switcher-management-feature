@@ -1,9 +1,9 @@
 import app from './app.ts';
-import { logger } from './utils.ts';
+import { getEnv, logger } from './utils.ts';
 
-const APP_PORT = Deno.env.get('APP_PORT') || 4000;
-const SSL_CERT = Deno.env.get('SSL_CERT');
-const SSL_KEY = Deno.env.get('SSL_KEY');
+const APP_PORT = getEnv('APP_PORT', 4000);
+const SSL_CERT = getEnv('SSL_CERT', '');
+const SSL_KEY = getEnv('SSL_KEY', '');
 
 const createServer = () => {
   if (SSL_CERT && SSL_KEY) {
