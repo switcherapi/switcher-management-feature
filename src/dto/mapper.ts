@@ -14,6 +14,6 @@ export async function toFeatureRequestDto(context: Context): Promise<FeatureRequ
   const reqBody = await context.request.body({ type: 'json' }).value;
   return {
     feature: decodeURIComponent(reqBody.feature),
-    value: decodeURIComponent(reqBody.params?.value),
+    value: decodeURIComponent(reqBody.parameters?.value),
   };
 }

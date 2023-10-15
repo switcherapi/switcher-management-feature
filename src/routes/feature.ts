@@ -13,7 +13,7 @@ router.post(
   '/',
   checkBody([
     { key: 'feature', validators: [required()] },
-    { key: 'params.value', validators: [hasLenght({ max: 100 })] },
+    { key: 'parameters.value', validators: [hasLenght({ max: 100 })] },
   ]),
   async (context: Context) => {
     try {

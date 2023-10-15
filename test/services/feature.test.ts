@@ -22,7 +22,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return feature enabled - with params'),
+  name: testTitle('it should return feature enabled - with parameters'),
   async fn() {
     //given
     Switcher.assume('FEATURE_NAME').true();
