@@ -18,13 +18,13 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return true for enabled feature - with params'),
+  name: testTitle('it should return true for enabled feature - with parameters'),
   async fn() {
     Switcher.assume('FEATURE_NAME').false();
 
     const request = await superoak(app);
     const response = await request.post('/')
-      .send({ feature: 'FEATURE_NAME', params: { value: 'VALUE' } })
+      .send({ feature: 'FEATURE_NAME', parameters: { value: 'VALUE' } })
       .expect(200);
 
     assertFalse(response.body.status);
@@ -74,15 +74,15 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - params has invalid length'),
+  name: testTitle('it should return error - parameters has invalid length'),
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
     const request = await superoak(app);
     const res = await request.post('/')
-      .send({ feature: 'FEATURE_NAME', params: { value: 'VALUE'.repeat(100) } })
+      .send({ feature: 'FEATURE_NAME', parameters: { value: 'VALUE'.repeat(100) } })
       .expect(422);
 
-    assertObjectMatch(res.body, { error: 'Invalid params.value input. Cause: it is greater than 100 characters.' });
+    assertObjectMatch(res.body, { error: 'Invalid parameters.value input. Cause: it is greater than 100 characters.' });
   },
 });
