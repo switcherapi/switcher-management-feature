@@ -1,28 +1,54 @@
 {
-  "info": {
-    "_postman_id": "2717ecc7-b90b-4271-b74d-9a55d86bd7f5",
-    "name": "Switcher Management Feature",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "9436108"
-  },
-  "item": [
-    {
-      "name": "API Check",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{url}}/api/check",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "api",
-            "check"
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "7b86d821-9d2e-496c-9178-6529697c079c",
+		"name": "Switcher Management Feature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9436108"
+	},
+	"item": [
+		{
+			"name": "API Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/check",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Feature - /",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"feature\": \"PLACEHOLDER\",\r\n    \"parameters\": {\r\n        \"value\": \"test\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
