@@ -81,28 +81,30 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: 'master'
 
       - name: Checkout Kustomize
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.ARGOCD_PAT }}
           repository: switcherapi/switcher-deployment
           ref: master
 
-      - name: Set Image
+      - name: Set up arkade-get
         uses: alexellis/arkade-get@master
         with:
           kubectl: latest
           kustomize: latest
-          run: |
-            cd switcher-management-feature/base
-            echo RELEASE_TIME=`date` > environment-properties.env
-            kustomize edit set image trackerforce/switcher-management-feature:latest=trackerforce/switcher-management-feature@${{ needs.docker.outputs.digest }}
-            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-            git config --global user.name "${{ github.actor }}"
-            git add .
-            git commit -m "[argocd] switcher-management-feature: ${{ needs.docker.outputs.digest }}"
-            git push
+
+      - name: Update Kustomize
+        run: |
+          cd switcher-management-feature/base
+          echo RELEASE_TIME=`date` > environment-properties.env
+          kustomize edit set image trackerforce/switcher-management-feature:latest=trackerforce/switcher-management-feature@${{ needs.docker.outputs.digest }}
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git add .
+          git commit -m "[argocd] switcher-management-feature: ${{ needs.docker.outputs.digest }}"
+          git push
