@@ -97,7 +97,7 @@ jobs:
         with:
           kubectl: latest
           kustomize: latest
-          command: |
+          run: |
             cd switcher-management-feature/base
             echo RELEASE_TIME=`date` > environment-properties.env
             kustomize edit set image trackerforce/switcher-management-feature:latest=trackerforce/switcher-management-feature@${{ needs.docker.outputs.digest }}
