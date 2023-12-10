@@ -40,3 +40,14 @@ deno task run:dev
 ```bash
 docker-compose up -d
 ```
+
+## Usage: Postman
+
+1. Import the environment [SM Feature (dev).postman_environment.json](https://raw.githubusercontent.com/switcherapi/switcher-management-feature/master/resources/SM%20Feature%20(dev).postman_environment.json) file into Postman
+2. Import the collection [Switcher Management Feature.postman_collection.json](https://raw.githubusercontent.com/switcherapi/switcher-management-feature/master/resources/Switcher%20Management%20Feature.postman_collection.json) file into Postman
+
+## Usage: Swagger
+
+1. Run the application
+2. Open [Swagger Editor](https://editor.swagger.io/)
+3. Click on File, Import URL using http://localhost:4000/swagger.json
