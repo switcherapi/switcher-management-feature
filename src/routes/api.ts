@@ -9,6 +9,17 @@ router.get('/api/check', ({ response }: Context) => {
     status: 'ok',
     releaseTime: getEnv('RELEASE_TIME', 'today'),
     sslEnabled: Deno.env.has('SSL_CERT') && Deno.env.has('SSL_KEY'),
+    rateLimit: {
+      window: getEnv('APP_RATE_LIMIT_WINDOW', 'not set'),
+      max: getEnv('APP_RATE_LIMIT', 'not set'),
+    },
+    switcherSettings: {
+      url: getEnv('SWITCHER_URL', 'not set'),
+      environment: getEnv('SWITCHER_ENVIRONMENT', 'not set'),
+      offline: getEnv('SWITCHER_OFFLINE', 'not set'),
+      snapshotAutoLoad: getEnv('SWITCHER_SNAPSHOT_LOAD', 'not set'),
+      snapshotUpdateInterval: getEnv('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', 'not set'),
+    },
   };
 });
 
