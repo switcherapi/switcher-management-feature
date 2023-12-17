@@ -9,8 +9,22 @@ Deno.test({
     const request = await superoak(app);
     const response = await request.get('/api/check').expect(200);
 
-    assertEquals(response.body.status, 'ok');
-    assert(!response.body.sslEnabled);
+    assertEquals(response.body, {
+      status: 'ok',
+      releaseTime: 'today',
+      sslEnabled: false,
+      rateLimit: {
+        max: '100',
+        window: '3000',
+      },
+      switcherSettings: {
+        url: 'https://api.switcherapi.com',
+        environment: "test",
+        offline: "true",
+        snapshotAutoLoad: "false",
+        snapshotUpdateInterval: "not set"
+      },
+    });
   },
 });
 

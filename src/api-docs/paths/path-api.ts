@@ -14,15 +14,53 @@ export default {
                 properties: {
                   status: {
                     type: 'string',
-                    example: 'ok',
+                    enum: ['ok'],
                   },
                   releaseTime: {
                     type: 'string',
-                    example: 'today',
+                    description: 'Release time of the API.',
                   },
                   sslEnabled: {
                     type: 'boolean',
-                    example: true,
+                    description: 'Is SSL enabled?',
+                  },
+                  rateLimit: {
+                    type: 'object',
+                    properties: {
+                      window: {
+                        type: 'string',
+                        description: 'Rate limit window.',
+                      },
+                      max: {
+                        type: 'string',
+                        description: 'Rate limit max.',
+                      },
+                    },
+                  },
+                  switcherSettings: {
+                    type: 'object',
+                    properties: {
+                      url: {
+                        type: 'string',
+                        description: 'Switcher API URL.',
+                      },
+                      environment: {
+                        type: 'string',
+                        description: 'Switcher environment.',
+                      },
+                      offline: {
+                        type: 'string',
+                        description: 'Switcher offline.',
+                      },
+                      snapshotAutoLoad: {
+                        type: 'string',
+                        description: 'Switcher snapshot auto load.',
+                      },
+                      snapshotUpdateInterval: {
+                        type: 'string',
+                        description: 'Switcher snapshot update interval.',
+                      },
+                    },
                   },
                 },
               },

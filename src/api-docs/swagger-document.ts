@@ -1,7 +1,7 @@
 import info from './swagger-info.ts';
 import pathApi from './paths/path-api.ts';
 import pathFeature from './paths/path-feature.ts';
-import featureScehma from './schemas/feature.ts';
+import featureSchema from './schemas/feature.ts';
 
 export default {
   openapi: '3.0.1',
@@ -18,7 +18,7 @@ export default {
   ],
   components: {
     schemas: {
-      ...featureScehma,
+      ...featureSchema,
     },
   },
   paths: {
