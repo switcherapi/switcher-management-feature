@@ -6,7 +6,6 @@ import { assert } from '../deps.ts';
 await load({ export: true, envPath: getEnv('ENV_PATH', '.env.test') });
 const featureService = new FeatureService();
 
-const testTitle = (description: string) => `Feature service integrated - ${description}`;
 const teardown = () => {
   Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
   featureService.terminateSnapshotAutoUpdate();
@@ -19,7 +18,7 @@ const setupDenoEnv = () => {
 };
 
 Deno.test({
-  name: testTitle('it should return feature enabled - from snapshot cache'),
+  name: 'Feature service integrated - it should return feature enabled - from snapshot cache',
   async fn() {
     //given
     setupDenoEnv();

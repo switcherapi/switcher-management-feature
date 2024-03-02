@@ -10,8 +10,8 @@ export function toFeatureResponseDto(status: boolean): FeatureResponseDto {
   };
 }
 
-export async function toFeatureRequestDto(context: Context): Promise<FeatureRequestDto> {
-  const reqBody = await context.request.body({ type: 'json' }).value;
+export function toFeatureRequestDto(context: Context): FeatureRequestDto {
+  const reqBody = context.state.request_body;
   return {
     feature: decodeURIComponent(reqBody.feature),
     value: decodeURIComponent(reqBody.parameters?.value),
