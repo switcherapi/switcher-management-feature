@@ -16,16 +16,17 @@ interface ValidatorParams {
 export default class Validator {
   static checkBody(args: ValidatorParams[]) {
     return async (context: Context, next: Next) => {
-      const reqBody = await context.request.body({ type: 'json' }).value;
+      const body = await context.request.body.text();
 
-      if (!reqBody) {
+      if (!body) {
         return responseError(context, new Error('Invalid request body'), 400);
       }
 
+      context.state.request_body = JSON.parse(body);
       for (const arg of args) {
         const value = arg.key.split('.').reduce((o, i) => {
           if (o) return o[i];
-        }, reqBody);
+        }, context.state.request_body);
 
         for (const validator of arg.validators) {
           if (!validator(value, arg.key, context)) {

@@ -1,10 +1,8 @@
 import app from '../../src/app.ts';
 import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from '../deps.ts';
 
-const testTitle = (description: string) => `Feature route - ${description}`;
-
 Deno.test({
-  name: testTitle('it should return true for enabled feature'),
+  name: 'Feature route - it should return true for enabled feature',
   async fn() {
     Switcher.assume('FEATURE_NAME').true();
 
@@ -18,7 +16,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return true for enabled feature - with parameters'),
+  name: 'Feature route - it should return true for enabled feature - with parameters',
   async fn() {
     Switcher.assume('FEATURE_NAME').false();
 
@@ -32,7 +30,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - cannot access API'),
+  name: 'it should return error - cannot access API',
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
@@ -46,7 +44,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - body request not provided'),
+  name: 'Feature route - it should return error - body request not provided',
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
@@ -60,7 +58,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - feature name not provided'),
+  name: 'Feature route - it should return error - feature name not provided',
   async fn() {
     Switcher.forget('FEATURE_NAME');
 
@@ -74,7 +72,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return error - parameters has invalid length'),
+  name: 'Feature route - it should return error - parameters has invalid length',
   async fn() {
     Switcher.forget('FEATURE_NAME');
 

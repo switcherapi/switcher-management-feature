@@ -17,7 +17,7 @@ router.post(
   ]),
   async (context: Context) => {
     try {
-      const request = await toFeatureRequestDto(context);
+      const request = toFeatureRequestDto(context);
       const status = await getService().isFeatureEnabled(request.feature, { value: request?.value });
       responseSuccess(context, toFeatureResponseDto(status));
     } catch (error) {

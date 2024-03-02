@@ -1,10 +1,8 @@
 import app from '../../src/app.ts';
 import { assert, assertEquals, superoak } from '../deps.ts';
 
-const testTitle = (description: string) => `API route - ${description}`;
-
 Deno.test({
-  name: testTitle('it should return ok'),
+  name: 'API route - it should return ok',
   async fn() {
     const request = await superoak(app);
     const response = await request.get('/api/check').expect(200);
@@ -19,17 +17,17 @@ Deno.test({
       },
       switcherSettings: {
         url: 'https://api.switcherapi.com',
-        environment: "test",
-        offline: "true",
-        snapshotAutoLoad: "false",
-        snapshotUpdateInterval: "not set"
+        environment: 'test',
+        offline: 'true',
+        snapshotAutoLoad: 'false',
+        snapshotUpdateInterval: 'not set',
       },
     });
   },
 });
 
 Deno.test({
-  name: testTitle('it should return ok - release time'),
+  name: 'API route - it should return ok - release time',
   async fn() {
     //given
     Deno.env.set('RELEASE_TIME', 'tomorow');
@@ -43,7 +41,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: testTitle('it should return ok - ssl enabled'),
+  name: 'API route - it should return ok - ssl enabled',
   async fn() {
     //given
     Deno.env.set('SSL_CERT', 'cert');
