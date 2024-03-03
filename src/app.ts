@@ -1,7 +1,7 @@
 import { Application, load } from './deps.ts';
 import { responseTime, responseTimeLog } from './middleware/index.ts';
 
-await load({ export: true, envPath: getEnv('ENV_PATH', '.env') });
+await load({ export: true, envPath: getEnv('ENV_PATH', '.env'), allowEmptyValues: true });
 
 import Helmet from './middleware/helmet.ts';
 import { getEnv } from './utils.ts';
