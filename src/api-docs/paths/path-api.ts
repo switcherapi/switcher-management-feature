@@ -48,9 +48,9 @@ export default {
                         type: 'string',
                         description: 'Switcher environment.',
                       },
-                      offline: {
+                      local: {
                         type: 'string',
-                        description: 'Switcher offline.',
+                        description: 'Switcher local.',
                       },
                       snapshotAutoLoad: {
                         type: 'string',

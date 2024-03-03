@@ -11,7 +11,7 @@ export default class SwitcherClient {
     const apiKey = getEnv('SWITCHER_API_KEY', '');
     const url = getEnv('SWITCHER_URL', 'Not set');
     const environment = getEnv('SWITCHER_ENVIRONMENT', 'default');
-    const offline = getEnv('SWITCHER_OFFLINE', true);
+    const local = getEnv('SWITCHER_LOCAL', true);
     const regexSafe = getEnv('SWITCHER_REGEX_SAFE', false);
     const snapshotLocation = getEnv('SWITCHER_SNAPSHOT_LOCATION', '');
     const updateInterval = getEnv('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
@@ -24,7 +24,7 @@ export default class SwitcherClient {
       apiKey: apiKey?.length ? '********' : 'Not set',
       url,
       environment,
-      offline,
+      local,
       regexSafe,
       snapshotLocation,
       updateInterval,
@@ -33,7 +33,7 @@ export default class SwitcherClient {
     });
 
     Switcher.buildContext({ url, apiKey, domain, component, environment }, {
-      offline,
+      local,
       snapshotLocation,
       regexSafe,
       certPath,

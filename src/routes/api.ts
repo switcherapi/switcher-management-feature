@@ -16,7 +16,7 @@ router.get('/api/check', ({ response }: Context) => {
     switcherSettings: {
       url: getEnv('SWITCHER_URL', 'not set'),
       environment: getEnv('SWITCHER_ENVIRONMENT', 'not set'),
-      offline: getEnv('SWITCHER_OFFLINE', 'not set'),
+      local: getEnv('SWITCHER_LOCAL', 'not set'),
       snapshotAutoLoad: getEnv('SWITCHER_SNAPSHOT_LOAD', 'not set'),
       snapshotUpdateInterval: getEnv('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', 'not set'),
     },
