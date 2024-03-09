@@ -1,6 +1,6 @@
 export default {
   title: 'Switcher Management Feature',
-  version: 'v1.0.1',
+  version: 'v1.0.2',
   description: 'Feature Flag Service for Switcher Management.',
   contact: {
     name: 'Roger Floriano (petruki)',

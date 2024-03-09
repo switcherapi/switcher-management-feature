@@ -1,19 +1,23 @@
-import { Context, Router } from '../deps.ts';
+import { Context, Router, ValidatorFn, ValidatorMiddleware } from '../deps.ts';
 import { toFeatureRequestDto, toFeatureResponseDto } from '../dto/mapper.ts';
 import FeatureService from '../services/feature.ts';
 import { responseError, responseSuccess } from '../utils.ts';
-import Validator from '../middleware/validator.ts';
 
 const router = new Router();
 let service: FeatureService;
 
-const { checkBody, hasLenght, required } = Validator;
+const { body, useErrorHandler } = ValidatorMiddleware.createMiddleware();
+const { hasLenght } = ValidatorFn.createValidator();
+
+useErrorHandler((context: Context, error: string) => {
+  return responseError(context, new Error(error), 422);
+});
 
 router.post(
   '/',
-  checkBody([
-    { key: 'feature', validators: [required()] },
-    { key: 'parameters.value', validators: [hasLenght({ max: 100 })] },
+  body([
+    { key: 'feature' },
+    { key: 'parameters.value', validators: [hasLenght({ max: 100 })], optional: true },
   ]),
   async (context: Context) => {
     try {
@@ -26,12 +30,12 @@ router.post(
   },
 );
 
-const getService = () => {
+function getService() {
   if (!service) {
     service = new FeatureService();
   }
 
   return service;
-};
+}
 
 export default router;

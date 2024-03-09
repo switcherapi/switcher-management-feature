@@ -1,8 +1,8 @@
-export interface ResponseDto {
+export type ResponseDto = {
   code: number;
   message: string;
-}
+};
 
-export interface FeatureResponseDto extends ResponseDto {
+export type FeatureResponseDto = ResponseDto & {
   status: boolean;
-}
+};

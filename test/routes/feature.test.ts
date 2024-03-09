@@ -51,7 +51,7 @@ Deno.test({
     const request = await superoak(app);
     const res = await request.post('/')
       .send()
-      .expect(400);
+      .expect(422);
 
     assertObjectMatch(res.body, { error: 'Invalid request body' });
   },
@@ -65,9 +65,9 @@ Deno.test({
     const request = await superoak(app);
     const res = await request.post('/')
       .send({ feature: '' })
-      .expect(400);
+      .expect(422);
 
-    assertObjectMatch(res.body, { error: 'Invalid feature input. Cause: it is empty.' });
+    assertObjectMatch(res.body, { error: 'Invalid feature input. Cause: it is required.' });
   },
 });
 
@@ -81,6 +81,8 @@ Deno.test({
       .send({ feature: 'FEATURE_NAME', parameters: { value: 'VALUE'.repeat(100) } })
       .expect(422);
 
-    assertObjectMatch(res.body, { error: 'Invalid parameters.value input. Cause: it is greater than 100 characters.' });
+    assertObjectMatch(res.body, {
+      error: 'Invalid parameters.value input. Cause: it exceeds the maximum length of 100.',
+    });
   },
 });

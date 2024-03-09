@@ -1,6 +1,6 @@
 {
   "name": "@switcherapi/switcher-management-feature",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Feature Flag Service for Switcher Management",
   "tasks": {
     "run": "deno run --allow-net --allow-env --allow-read --allow-write src/index.ts",
@@ -12,5 +12,6 @@
     "lcov": "deno coverage coverage --lcov --output=coverage/report.lcov",
     "clean": "rm -rf ./npm ./coverage",
     "cover": "deno task clean && deno task test && deno task lcov && genhtml -o coverage/html coverage/report.lcov"
-  }
+  },
+  "lock": true
 }

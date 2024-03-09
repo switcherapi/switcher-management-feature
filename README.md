@@ -32,7 +32,7 @@ It uses [Oak](https://deno.land/x/oak) as middleware framework and [Switcher4Den
 ## Running (local)
 
 ```bash
-deno task run:dev
+deno task run
 ```
 
 ## Running (docker)
