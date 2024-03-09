@@ -22,8 +22,8 @@ class FeatureService {
   }
 }
 
-interface Param {
+type Param = {
   value: string;
-}
+};
 
 export default FeatureService;
