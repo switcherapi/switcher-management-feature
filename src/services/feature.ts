@@ -14,7 +14,7 @@ class FeatureService {
       entries.push(checkValue(params.value));
     }
 
-    return await switcher.isItOn(featureName, entries);
+    return await switcher.isItOn(featureName, entries) as boolean;
   }
 
   terminateSnapshotAutoUpdate() {
