@@ -1,4 +1,4 @@
-import SwitcherClient from '../config/switcher-client.ts';
+import SwitcherClient from '../external/switcher-client.ts';
 import { Client } from '../deps.ts';
 
 class FeatureService {
