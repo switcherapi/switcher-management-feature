@@ -1,20 +1,19 @@
-import SwitcherClient from '../config/switcher-client.ts';
-import { checkValue, Switcher } from '../deps.ts';
+import SwitcherClient from '../external/switcher-client.ts';
+import { Client } from '../deps.ts';
 
 class FeatureService {
-  async initialize(fetchOnline: boolean) {
-    await SwitcherClient.initialize(fetchOnline);
+  async initialize(fetchRemote: boolean) {
+    await SwitcherClient.initialize(fetchRemote);
   }
 
   async isFeatureEnabled(featureName: string, params?: Param) {
-    const switcher = Switcher.factory();
-    const entries = [];
+    const switcher = Client.getSwitcher();
 
     if (params?.value) {
-      entries.push(checkValue(params.value));
+      switcher.checkValue(params.value);
     }
 
-    return await switcher.isItOn(featureName, entries) as boolean;
+    return await switcher.isItOn(featureName) as boolean;
   }
 
   terminateSnapshotAutoUpdate() {

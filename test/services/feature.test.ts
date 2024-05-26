@@ -1,13 +1,21 @@
 import FeatureService from '../../src/services/feature.ts';
-import { assert, assertFalse, Switcher } from '../deps.ts';
+import { assert, assertFalse, Client } from '../deps.ts';
 
 const featureService = new FeatureService();
+
+const setupDenoEnv = async (local: boolean, interval: string = '') => {
+  Deno.env.set('SWITCHER_ENVIRONMENT', 'test');
+  Deno.env.set('SWITCHER_LOCAL', String(local));
+  Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', interval);
+  await import('../../src/app.ts');
+};
 
 Deno.test({
   name: 'Feature service - it should return feature disabled',
   async fn() {
     //given
-    Switcher.assume('FEATURE_NAME').false();
+    await setupDenoEnv(true);
+    Client.assume('FEATURE_NAME').false();
     const featureName = 'FEATURE_NAME';
 
     //test
@@ -24,7 +32,8 @@ Deno.test({
   name: 'Feature service - it should return feature enabled - with parameters',
   async fn() {
     //given
-    Switcher.assume('FEATURE_NAME').true();
+    await  setupDenoEnv(true);
+    Client.assume('FEATURE_NAME').true();
     const featureName = 'FEATURE_NAME';
 
     //test
