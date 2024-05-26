@@ -1,11 +1,11 @@
-import { Switcher } from '../deps.ts';
+import { Client } from '../deps.ts';
 import { getEnv, logger } from '../utils.ts';
 
 /**
  * SwitcherClient wraps Switcher SDK settings and initialization.
  */
 export default class SwitcherClient {
-  static async initialize(fetchOnline = true) {
+  static async initialize(fetchRemote = true) {
     const domain = getEnv('SWITCHER_DOMAIN', 'Switcher API');
     const component = getEnv('SWITCHER_COMPONENT', 'switcher-management');
     const apiKey = getEnv('SWITCHER_API_KEY', '');
@@ -29,29 +29,32 @@ export default class SwitcherClient {
       snapshotLocation,
       updateInterval,
       certPath,
-      fetchOnline,
+      fetchRemote,
     });
 
-    Switcher.buildContext({ url, apiKey, domain, component, environment }, {
+    Client.buildContext({ url, apiKey, domain, component, environment }, {
       local,
       snapshotLocation,
       regexSafe,
       certPath,
     });
 
-    await Switcher.loadSnapshot(false, fetchOnline).then((version) => {
+    await Client.loadSnapshot({ fetchRemote }).then((version) => {
       logger('INFO', 'SwitcherClient', `Snapshot version ${version} loaded`);
     }).catch((err) => {
       logger('ERROR', 'SwitcherClient', `Failed to load snapshot: ${err}`);
     });
 
     if (updateInterval) {
-      Switcher.scheduleSnapshotAutoUpdate(Number(updateInterval), (updated) => {
-        if (updated) {
-          logger('INFO', 'SwitcherClient', `Snapshot updated: ${Switcher.snapshot?.data.domain.version}`);
-        }
-      }, (err) => {
-        logger('ERROR', 'SwitcherClient', `Failed to update snapshot: ${err}`);
+      Client.scheduleSnapshotAutoUpdate(Number(updateInterval), {
+        success: (updated) => {
+          if (updated) {
+            logger('INFO', 'SwitcherClient', `Snapshot updated: ${Client.snapshot?.data.domain.version}`);
+          }
+        },
+        reject: (err) => {
+          logger('ERROR', 'SwitcherClient', `Failed to update snapshot: ${err}`);
+        },
       });
     }
 
@@ -59,6 +62,6 @@ export default class SwitcherClient {
   }
 
   static terminateSnapshotAutoUpdate(): void {
-    Switcher.terminateSnapshotAutoUpdate();
+    Client.terminateSnapshotAutoUpdate();
   }
 }

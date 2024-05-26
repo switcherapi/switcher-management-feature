@@ -1,5 +1,5 @@
 import FeatureService from '../../src/services/feature.ts';
-import { assert, assertFalse, Switcher } from '../deps.ts';
+import { assert, assertFalse, Client } from '../deps.ts';
 
 const featureService = new FeatureService();
 
@@ -7,7 +7,7 @@ Deno.test({
   name: 'Feature service - it should return feature disabled',
   async fn() {
     //given
-    Switcher.assume('FEATURE_NAME').false();
+    Client.assume('FEATURE_NAME').false();
     const featureName = 'FEATURE_NAME';
 
     //test
@@ -24,7 +24,7 @@ Deno.test({
   name: 'Feature service - it should return feature enabled - with parameters',
   async fn() {
     //given
-    Switcher.assume('FEATURE_NAME').true();
+    Client.assume('FEATURE_NAME').true();
     const featureName = 'FEATURE_NAME';
 
     //test

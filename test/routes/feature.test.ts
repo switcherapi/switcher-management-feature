@@ -1,10 +1,10 @@
 import app from '../../src/app.ts';
-import { assert, assertFalse, assertObjectMatch, superoak, Switcher } from '../deps.ts';
+import { assert, assertFalse, assertObjectMatch, Client, superoak } from '../deps.ts';
 
 Deno.test({
   name: 'Feature route - it should return true for enabled feature',
   async fn() {
-    Switcher.assume('FEATURE_NAME').true();
+    Client.assume('FEATURE_NAME').true();
 
     const request = await superoak(app);
     const response = await request.post('/')
@@ -18,7 +18,7 @@ Deno.test({
 Deno.test({
   name: 'Feature route - it should return true for enabled feature - with parameters',
   async fn() {
-    Switcher.assume('FEATURE_NAME').false();
+    Client.assume('FEATURE_NAME').false();
 
     const request = await superoak(app);
     const response = await request.post('/')
@@ -32,7 +32,7 @@ Deno.test({
 Deno.test({
   name: 'it should return error - cannot access API',
   async fn() {
-    Switcher.forget('FEATURE_NAME');
+    Client.forget('FEATURE_NAME');
 
     const request = await superoak(app);
     const res = await request.post('/')
@@ -46,7 +46,7 @@ Deno.test({
 Deno.test({
   name: 'Feature route - it should return error - body request not provided',
   async fn() {
-    Switcher.forget('FEATURE_NAME');
+    Client.forget('FEATURE_NAME');
 
     const request = await superoak(app);
     const res = await request.post('/')
@@ -60,7 +60,7 @@ Deno.test({
 Deno.test({
   name: 'Feature route - it should return error - feature name not provided',
   async fn() {
-    Switcher.forget('FEATURE_NAME');
+    Client.forget('FEATURE_NAME');
 
     const request = await superoak(app);
     const res = await request.post('/')
@@ -74,7 +74,7 @@ Deno.test({
 Deno.test({
   name: 'Feature route - it should return error - parameters has invalid length',
   async fn() {
-    Switcher.forget('FEATURE_NAME');
+    Client.forget('FEATURE_NAME');
 
     const request = await superoak(app);
     const res = await request.post('/')
