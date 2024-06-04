@@ -9,6 +9,7 @@
       "jsr:@std/assert@^0.222.1": "jsr:@std/assert@0.222.1",
       "jsr:@std/assert@^0.223.0": "jsr:@std/assert@0.223.0",
       "jsr:@std/assert@^0.225.2": "jsr:@std/assert@0.225.3",
+      "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
       "jsr:@std/bytes@0.222": "jsr:@std/bytes@0.222.1",
       "jsr:@std/bytes@0.223": "jsr:@std/bytes@0.223.0",
       "jsr:@std/bytes@^0.223.0": "jsr:@std/bytes@0.223.0",
@@ -23,8 +24,8 @@
       "jsr:@std/media-types@0.222": "jsr:@std/media-types@0.222.1",
       "jsr:@std/media-types@0.223": "jsr:@std/media-types@0.223.0",
       "jsr:@std/path@0.223": "jsr:@std/path@0.223.0",
-      "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.1",
-      "jsr:@switcherapi/switcher-client-deno@2.0.1": "jsr:@switcherapi/switcher-client-deno@2.0.1",
+      "jsr:@std/path@^0.225.1": "jsr:@std/path@0.225.2",
+      "jsr:@switcherapi/switcher-client-deno@2.0.2": "jsr:@switcherapi/switcher-client-deno@2.0.2",
       "jsr:@trackerforce/validator4oak@1.0.1": "jsr:@trackerforce/validator4oak@1.0.1",
       "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:path-to-regexp@6.2.1": "npm:path-to-regexp@6.2.1"
@@ -62,6 +63,9 @@
       },
       "@std/assert@0.225.3": {
         "integrity": "b3c2847aecf6955b50644cdb9cf072004ea3d1998dd7579fc0acb99dbb23bd4f"
+      },
+      "@std/assert@0.226.0": {
+        "integrity": "0dfb5f7c7723c18cec118e080fec76ce15b4c31154b15ad2bd74822603ef75b3"
       },
       "@std/bytes@0.222.1": {
         "integrity": "04dbf33e889ed5f9f6a87bc6b6b882dc105fffae6d2b042f832d92d4f34771c0"
@@ -126,11 +130,14 @@
           "jsr:@std/assert@^0.223.0"
         ]
       },
-      "@std/path@0.225.1": {
-        "integrity": "8c3220635a73730eb51fe43de9e10b79e2724a5bb8638b9355d35ae012fd9429"
+      "@std/path@0.225.2": {
+        "integrity": "0f2db41d36b50ef048dcb0399aac720a5348638dd3cb5bf80685bf2a745aa506",
+        "dependencies": [
+          "jsr:@std/assert@^0.226.0"
+        ]
       },
-      "@switcherapi/switcher-client-deno@2.0.1": {
-        "integrity": "e0c72c9a3e62ea6fdbff2b402210c34df407d3a539ac7639d527d00bda3624e7",
+      "@switcherapi/switcher-client-deno@2.0.2": {
+        "integrity": "a665ee63b889e843e861f51c893e7f2013ea983615aba094d160076120344157",
         "dependencies": [
           "jsr:@std/fs@0.229.1"
         ]
