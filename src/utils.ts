@@ -1,5 +1,5 @@
-import { bold, Context } from './deps.ts';
-import { ResponseDto } from './dto/feature-response.ts';
+import { bold, type Context } from './deps.ts';
+import type { ResponseDto } from './dto/feature-response.ts';
 
 const Level = Object.freeze({
   INFO: 0,

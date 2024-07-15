@@ -1,4 +1,4 @@
-import { Context, Middleware, Next } from '../deps.ts';
+import type { Context, Middleware, Next } from '../deps.ts';
 import { responseError } from '../utils.ts';
 
 class RequestStore {

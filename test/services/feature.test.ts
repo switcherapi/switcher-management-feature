@@ -32,7 +32,7 @@ Deno.test({
   name: 'Feature service - it should return feature enabled - with parameters',
   async fn() {
     //given
-    await  setupDenoEnv(true);
+    await setupDenoEnv(true);
     Client.assume('FEATURE_NAME').true();
     const featureName = 'FEATURE_NAME';
 
