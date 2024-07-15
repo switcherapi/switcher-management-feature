@@ -1,5 +1,5 @@
 import RateLimit from '../../src/middleware/rate-limit.ts';
-import { Context, Next } from '../../src/deps.ts';
+import type { Context, Next } from '../../src/deps.ts';
 import { assertEquals } from '../deps.ts';
 
 const newRequest = () => {

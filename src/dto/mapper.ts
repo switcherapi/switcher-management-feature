@@ -1,6 +1,6 @@
-import { Context } from '../deps.ts';
-import { FeatureRequestDto } from './feature-request.ts';
-import { FeatureResponseDto } from './feature-response.ts';
+import type { Context } from '../deps.ts';
+import type { FeatureRequestDto } from './feature-request.ts';
+import type { FeatureResponseDto } from './feature-response.ts';
 
 export function toFeatureResponseDto(status: boolean): FeatureResponseDto {
   return {
