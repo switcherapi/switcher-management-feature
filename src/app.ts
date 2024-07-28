@@ -15,6 +15,7 @@ const app = new Application();
 const rateLimit = new RateLimit();
 const helmet = new Helmet();
 const service = new FeatureService();
+const whitelist = ['/api/check', '/swagger.json'];
 
 await service.initialize(getEnv('SWITCHER_SNAPSHOT_LOAD', true));
 
@@ -22,7 +23,7 @@ app.use(helmet.middleware());
 app.use(rateLimit.middleware({
   limit: Number(getEnv('APP_RATE_LIMIT', '1000')),
   windowMs: Number(getEnv('APP_RATE_LIMIT_WINDOW', '60000')),
-}));
+}, whitelist));
 
 app.use(responseTimeLog);
 app.use(responseTime);
