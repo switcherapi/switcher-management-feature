@@ -25,7 +25,7 @@ router.post(
       const status = await getService().isFeatureEnabled(request.feature, { value: request?.value });
       responseSuccess(context, toFeatureResponseDto(status));
     } catch (error) {
-      responseError(context, error, 500, true);
+      responseError(context, error as Error, 500, true);
     }
   },
 );
