@@ -4,4 +4,5 @@ export { superoak } from 'https://deno.land/x/superoak@4.8.1/mod.ts';
 export { assert, assertEquals, assertFalse, assertObjectMatch } from 'jsr:@std/assert@1.0.5';
 
 // Fixes superdeno@4.9.0 issue
+// deno-lint-ignore no-explicit-any
 (globalThis as any).window = globalThis;
