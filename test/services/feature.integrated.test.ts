@@ -15,11 +15,18 @@ const setupDenoEnv = async () => {
   await import('../../src/app.ts');
 };
 
+const testBody = (fn: (t: Deno.TestContext) => void | Promise<void>) => {
+  return async (t: Deno.TestContext) => {
+    await setupDenoEnv();
+    await fn(t);
+    teardown();
+  }
+};
+
 Deno.test({
   name: 'Feature service integrated - it should return feature enabled - from snapshot cache',
-  async fn() {
+  fn: testBody(async () => {
     //given
-    await setupDenoEnv();
     await featureService.initialize(false);
 
     //test
@@ -27,8 +34,5 @@ Deno.test({
 
     //assert
     assert(response);
-
-    //teardown
-    teardown();
-  },
+  }),
 });
