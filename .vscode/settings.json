@@ -1,6 +1,12 @@
 {
     "deno.enable": true,
-    "deno.unstable": true,
+    "deno.testing.args": [
+        "--allow-read",
+        "--allow-net",
+        "--allow-env",
+        "--allow-write",
+        "--allow-import"
+    ],
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
