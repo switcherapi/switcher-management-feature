@@ -6,6 +6,7 @@ const newRequest = () => {
   return {
     request: {
       ip: 'localhost',
+      method: 'OPTIONS',
     },
     response: {
       status: 0,

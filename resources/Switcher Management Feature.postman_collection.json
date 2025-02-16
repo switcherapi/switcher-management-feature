@@ -49,6 +49,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Feature - /group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"features\": [\r\n        {\r\n            \"feature\": \"PLACEHOLDER\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/group",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"group"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
