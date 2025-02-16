@@ -8,7 +8,7 @@ const Level = Object.freeze({
 });
 
 export const responseSuccess = ({ response }: Context, body: ResponseDto) => {
-  response.status = body.code || 200;
+  response.status = 200;
   response.body = body;
 };
 

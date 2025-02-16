@@ -20,7 +20,7 @@ const testBody = (fn: (t: Deno.TestContext) => void | Promise<void>) => {
     await setupDenoEnv();
     await fn(t);
     teardown();
-  }
+  };
 };
 
 Deno.test({
@@ -30,7 +30,7 @@ Deno.test({
     await featureService.initialize(false);
 
     //test
-    const response = await featureService.isFeatureEnabled('PLACEHOLDER');
+    const response = await featureService.isFeatureEnabled({ feature: 'PLACEHOLDER' });
 
     //assert
     assert(response);

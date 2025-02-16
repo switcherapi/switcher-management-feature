@@ -6,3 +6,10 @@ export type ResponseDto = {
 export type FeatureResponseDto = ResponseDto & {
   status: boolean;
 };
+
+export type FeaturesResponseDto = ResponseDto & {
+  features: {
+    feature: string;
+    status: boolean;
+  }[];
+};

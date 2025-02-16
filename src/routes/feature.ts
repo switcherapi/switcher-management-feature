@@ -1,5 +1,10 @@
 import { type Context, Router, ValidatorFn, ValidatorMiddleware } from '../deps.ts';
-import { toFeatureRequestDto, toFeatureResponseDto } from '../dto/mapper.ts';
+import {
+  toFeatureRequestDto,
+  toFeatureResponseDto,
+  toFeaturesRequestDto,
+  toFeaturesResponseDto,
+} from '../dto/mapper.ts';
 import FeatureService from '../services/feature.ts';
 import { responseError, responseSuccess } from '../utils.ts';
 
@@ -7,7 +12,9 @@ const router = new Router();
 let service: FeatureService;
 
 const { body, useErrorHandler } = ValidatorMiddleware.createMiddleware();
-const { hasLenght } = ValidatorFn.createValidator();
+const { hasLenght, isArray } = ValidatorFn.createValidator();
+const featureNameConstraints = [hasLenght({ min: 3 })];
+const featureValueConstraints = [hasLenght({ max: 100 })];
 
 useErrorHandler((context: Context, error: string) => {
   return responseError(context, new Error(error), 422);
@@ -16,14 +23,33 @@ useErrorHandler((context: Context, error: string) => {
 router.post(
   '/',
   body([
-    { key: 'feature' },
-    { key: 'parameters.value', validators: [hasLenght({ max: 100 })], optional: true },
+    { key: 'feature', validators: featureNameConstraints },
+    { key: 'parameters.value', validators: featureValueConstraints, optional: true },
   ]),
   async (context: Context) => {
     try {
       const request = toFeatureRequestDto(context);
-      const status = await getService().isFeatureEnabled(request.feature, { value: request?.value });
+      const status = await getService().isFeatureEnabled(request);
+
       responseSuccess(context, toFeatureResponseDto(status));
+    } catch (error) {
+      responseError(context, error as Error, 500, true);
+    }
+  },
+);
+
+router.post(
+  '/group',
+  body([
+    { key: 'features', validators: [isArray({ min: 1 })] },
+    { key: 'features.*.feature', validators: featureNameConstraints },
+    { key: 'features.*.parameters.value', validators: featureValueConstraints, optional: true },
+  ]),
+  async (context: Context) => {
+    try {
+      const request = toFeaturesRequestDto(context);
+      const statuses = await getService().isFeaturesEnabled(request);
+      responseSuccess(context, toFeaturesResponseDto(statuses));
     } catch (error) {
       responseError(context, error as Error, 500, true);
     }

@@ -1,28 +1,36 @@
-import SwitcherClient from '../external/switcher-client.ts';
 import { Client } from '../deps.ts';
+import SwitcherClient from '../external/switcher-client.ts';
+import type { FeatureRequestDto, FeaturesRequestDto } from '../dto/feature-request.ts';
 
 class FeatureService {
   async initialize(fetchRemote: boolean) {
     await SwitcherClient.initialize(fetchRemote);
   }
 
-  async isFeatureEnabled(featureName: string, params?: Param) {
-    const switcher = Client.getSwitcher();
+  async isFeatureEnabled(featuresReq: FeatureRequestDto) {
+    return await this.isFeaturesEnabled({ features: [featuresReq] }).then((results) => results[0].result);
+  }
 
-    if (params?.value) {
-      switcher.checkValue(params.value);
-    }
+  async isFeaturesEnabled(featuresReq: FeaturesRequestDto) {
+    const featuresRes = await Promise.all(featuresReq.features.map(async (featureReq) => {
+      const switcher = Client.getSwitcher();
 
-    return await switcher.isItOn(featureName) as boolean;
+      if (featureReq?.parameters?.value) {
+        switcher.checkValue(featureReq.parameters.value);
+      }
+
+      return {
+        feature: featureReq.feature,
+        result: (await switcher.isItOn(featureReq.feature)) as boolean,
+      };
+    }));
+
+    return featuresRes;
   }
 
   terminateSnapshotAutoUpdate() {
     SwitcherClient.terminateSnapshotAutoUpdate();
   }
 }
-
-type Param = {
-  value: string;
-};
 
 export default FeatureService;
