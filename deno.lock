@@ -36,6 +36,7 @@
     "jsr:@std/fmt@1.0.2": "1.0.2",
     "jsr:@std/fmt@1.0.3": "1.0.3",
     "jsr:@std/fmt@1.0.5": "1.0.5",
+    "jsr:@std/fmt@1.0.6": "1.0.6",
     "jsr:@std/fs@0.229.1": "0.229.1",
     "jsr:@std/fs@1.0.6": "1.0.6",
     "jsr:@std/http@0.223": "0.223.0",
@@ -253,6 +254,9 @@
     },
     "@std/fmt@1.0.5": {
       "integrity": "0cfab43364bc36650d83c425cd6d99910fc20c4576631149f0f987eddede1a4d"
+    },
+    "@std/fmt@1.0.6": {
+      "integrity": "a2c56a69a2369876ddb3ad6a500bb6501b5bad47bb3ea16bfb0c18974d2661fc"
     },
     "@std/fs@0.229.1": {
       "integrity": "38d3fb31f0ca0a8c1118e039939188f32e291a3f7f17dc0868fec22024bdfadd",
