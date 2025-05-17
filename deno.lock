@@ -1,8 +1,8 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
     "jsr:@oak/commons@0.11": "0.11.0",
-    "jsr:@oak/commons@1": "1.0.0",
+    "jsr:@oak/commons@1": "1.0.1",
     "jsr:@oak/oak@16.1.0": "16.1.0",
     "jsr:@oak/oak@17.0.0": "17.0.0",
     "jsr:@oak/oak@17.1.0": "17.1.0",
@@ -21,14 +21,15 @@
     "jsr:@std/assert@~0.225.2": "0.225.3",
     "jsr:@std/bytes@0.223": "0.223.0",
     "jsr:@std/bytes@0.224": "0.224.0",
-    "jsr:@std/bytes@1": "1.0.5",
+    "jsr:@std/bytes@1": "1.0.6",
     "jsr:@std/bytes@^1.0.2": "1.0.4",
     "jsr:@std/crypto@0.223": "0.223.0",
     "jsr:@std/crypto@0.224": "0.224.0",
-    "jsr:@std/crypto@1": "1.0.4",
+    "jsr:@std/crypto@1": "1.0.5",
     "jsr:@std/dotenv@0.225.1": "0.225.1",
     "jsr:@std/dotenv@0.225.2": "0.225.2",
     "jsr:@std/dotenv@0.225.3": "0.225.3",
+    "jsr:@std/dotenv@0.225.4": "0.225.4",
     "jsr:@std/encoding@0.223": "0.223.0",
     "jsr:@std/encoding@1": "1.0.10",
     "jsr:@std/encoding@1.0.0-rc.2": "1.0.0-rc.2",
@@ -41,11 +42,12 @@
     "jsr:@std/fmt@1.0.5": "1.0.5",
     "jsr:@std/fmt@1.0.6": "1.0.6",
     "jsr:@std/fmt@1.0.7": "1.0.7",
+    "jsr:@std/fmt@1.0.8": "1.0.8",
     "jsr:@std/fs@0.229.1": "0.229.1",
     "jsr:@std/fs@1.0.6": "1.0.6",
     "jsr:@std/http@0.223": "0.223.0",
     "jsr:@std/http@0.224": "0.224.5",
-    "jsr:@std/http@1": "1.0.15",
+    "jsr:@std/http@1": "1.0.16",
     "jsr:@std/internal@^1.0.2": "1.0.2",
     "jsr:@std/internal@^1.0.3": "1.0.3",
     "jsr:@std/internal@^1.0.5": "1.0.5",
@@ -80,6 +82,17 @@
     },
     "@oak/commons@1.0.0": {
       "integrity": "49805b55603c3627a9d6235c0655aa2b6222d3036b3a13ff0380c16368f607ac",
+      "dependencies": [
+        "jsr:@std/assert@1",
+        "jsr:@std/bytes@1",
+        "jsr:@std/crypto@1",
+        "jsr:@std/encoding@1",
+        "jsr:@std/http@1",
+        "jsr:@std/media-types@1"
+      ]
+    },
+    "@oak/commons@1.0.1": {
+      "integrity": "889ff210f0b4292591721be07244ecb1b5c118742f5273c70cf30d7cd4184d0c",
       "dependencies": [
         "jsr:@std/assert@1",
         "jsr:@std/bytes@1",
@@ -220,6 +233,9 @@
     "@std/bytes@1.0.5": {
       "integrity": "4465dd739d7963d964c809202ebea6d5c6b8e3829ef25c6a224290fbb8a1021e"
     },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
     "@std/crypto@0.223.0": {
       "integrity": "1aa9555ff56b09e197ad988ea200f84bc6781fd4fd83f3a156ee44449af93000",
       "dependencies": [
@@ -239,6 +255,9 @@
     "@std/crypto@1.0.4": {
       "integrity": "cee245c453bd5366207f4d8aa25ea3e9c86cecad2be3fefcaa6cb17203d79340"
     },
+    "@std/crypto@1.0.5": {
+      "integrity": "0dcfbb319fe0bba1bd3af904ceb4f948cde1b92979ec1614528380ed308a3b40"
+    },
     "@std/dotenv@0.225.1": {
       "integrity": "138f31352843d76cfb6cda1b860e8aac6d02ce3b05e7e236a81bf285a9868d0c"
     },
@@ -247,6 +266,9 @@
     },
     "@std/dotenv@0.225.3": {
       "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
+    },
+    "@std/dotenv@0.225.4": {
+      "integrity": "2a672c2b192abe535dcfea1ae89f219ee3979af6aad7d185cb19206ee9bc5caf"
     },
     "@std/encoding@0.223.0": {
       "integrity": "2b5615a75e00337ce113f34cf2f9b8c18182c751a8dcc8b1a2c2fc0e117bef00"
@@ -280,6 +302,9 @@
     },
     "@std/fmt@1.0.7": {
       "integrity": "2a727c043d8df62cd0b819b3fb709b64dd622e42c3b1bb817ea7e6cc606360fb"
+    },
+    "@std/fmt@1.0.8": {
+      "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
     },
     "@std/fs@0.229.1": {
       "integrity": "38d3fb31f0ca0a8c1118e039939188f32e291a3f7f17dc0868fec22024bdfadd",
@@ -327,6 +352,12 @@
     },
     "@std/http@1.0.15": {
       "integrity": "435a4934b4e196e82a8233f724da525f7b7112f3566502f28815e94764c19159",
+      "dependencies": [
+        "jsr:@std/encoding@^1.0.10"
+      ]
+    },
+    "@std/http@1.0.16": {
+      "integrity": "80c8d08c4bfcf615b89978dcefb84f7e880087cf3b6b901703936f3592a06933",
       "dependencies": [
         "jsr:@std/encoding@^1.0.10"
       ]
@@ -424,7 +455,13 @@
       "integrity": "sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ=="
     }
   },
+  "redirects": {
+    "https://crux.land/api/get/2KNRVU": "https://crux.land/api/get/2KNRVU.ts",
+    "https://crux.land/api/get/router@0.0.5": "https://crux.land/api/get/2KNRVU",
+    "https://crux.land/router@0.0.5": "https://crux.land/api/get/router@0.0.5"
+  },
   "remote": {
+    "https://crux.land/api/get/2KNRVU.ts": "6a77d55844aba78d01520c5ff0b2f0af7f24cc1716a0de8b3bb6bd918c47b5ba",
     "https://deno.land/std@0.213.0/assert/_constants.ts": "a271e8ef5a573f1df8e822a6eb9d09df064ad66a4390f21b3e31f820a38e0975",
     "https://deno.land/std@0.213.0/assert/_diff.ts": "dcc63d94ca289aec80644030cf88ccbf7acaa6fbd7b0f22add93616b36593840",
     "https://deno.land/std@0.213.0/assert/_format.ts": "0ba808961bf678437fb486b56405b6fefad2cf87b5809667c781ddee8c32aff4",
@@ -497,6 +534,7 @@
     "https://deno.land/std@0.224.0/internal/format.ts": "0a98ee226fd3d43450245b1844b47003419d34d210fa989900861c79820d21c2",
     "https://deno.land/std@0.224.0/internal/mod.ts": "534125398c8e7426183e12dc255bb635d94e06d0f93c60a297723abe69d3b22e",
     "https://deno.land/x/free_port@v1.2.0/mod.ts": "512646732aaea41fbfd1f210f3ae82660f38251777d189d290da331d0235a58e",
+    "https://deno.land/x/mock_fetch@0.3.0/mod.ts": "7e7806c65ab17b2b684c334c4e565812bdaf504a3e9c938d2bb52bb67428bc89",
     "https://deno.land/x/opine@2.3.4/src/methods.ts": "0481daecc6068d24e9e5391818baddf555ab803d39a465dcd259161f8bd8ee49",
     "https://deno.land/x/opine@2.3.4/src/utils/mergeDescriptors.ts": "1fe498d4a1a8dcfd3570f9ca5e0647590d86d029b3c340bfcfdb57002851e41b",
     "https://deno.land/x/superdeno@4.9.0/deps.ts": "acb88a5969aae0bcc82e053cb433cd183a10cc656495caa634b6e22a79156c4e",
