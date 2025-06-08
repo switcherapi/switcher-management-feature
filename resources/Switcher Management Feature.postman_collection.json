@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"feature\": \"PLACEHOLDER\",\r\n    \"parameters\": {\r\n        \"value\": \"test\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"feature\": \"{{feature}}\",\r\n    \"parameters\": {\r\n        \"value\": \"{{value}}\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,7 +57,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"features\": [\r\n        {\r\n            \"feature\": \"PLACEHOLDER\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"features\": [\r\n        {\r\n            \"feature\": \"{{feature}}\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
