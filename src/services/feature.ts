@@ -21,15 +21,11 @@ class FeatureService {
 
       return {
         feature: featureReq.feature,
-        result: (await switcher.isItOn(featureReq.feature)) as boolean,
+        result: await switcher.isItOnBool(featureReq.feature, true),
       };
     }));
 
     return featuresRes;
-  }
-
-  terminateSnapshotAutoUpdate() {
-    SwitcherClient.terminateSnapshotAutoUpdate();
   }
 }
 

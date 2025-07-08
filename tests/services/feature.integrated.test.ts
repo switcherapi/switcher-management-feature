@@ -1,11 +1,11 @@
 import FeatureService from '../../src/services/feature.ts';
-import { assert } from '../deps.ts';
+import { assert, Client } from '../deps.ts';
 
 const featureService = new FeatureService();
 
 const teardown = () => {
   Deno.env.set('SWITCHER_SNAPSHOT_UPDATE_INTERVAL', '');
-  featureService.terminateSnapshotAutoUpdate();
+  Client.terminateSnapshotAutoUpdate();
 };
 
 const setupDenoEnv = async () => {

@@ -30,7 +30,7 @@ Deno.test({
 
     //assert
     assertFalse(response);
-    featureService.terminateSnapshotAutoUpdate();
+    Client.terminateSnapshotAutoUpdate();
   }),
 });
 
@@ -47,6 +47,6 @@ Deno.test({
 
     //assert
     assert(response);
-    featureService.terminateSnapshotAutoUpdate();
+    Client.terminateSnapshotAutoUpdate();
   }),
 });
