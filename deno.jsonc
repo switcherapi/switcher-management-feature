@@ -1,6 +1,6 @@
 {
   "name": "@switcherapi/switcher-management-feature",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Feature Flag Service for Switcher Management",
   "tasks": {
     "run": "deno run --allow-net --allow-env --allow-read --allow-write src/index.ts",

@@ -29,7 +29,8 @@ router.post(
   async (context: Context) => {
     try {
       const request = toFeatureRequestDto(context);
-      const status = await getService().isFeatureEnabled(request);
+      const service = getService();
+      const status = await service.isFeatureEnabled(request);
 
       responseSuccess(context, toFeatureResponseDto(status));
     } catch (error) {
@@ -48,7 +49,9 @@ router.post(
   async (context: Context) => {
     try {
       const request = toFeaturesRequestDto(context);
-      const statuses = await getService().isFeaturesEnabled(request);
+      const service = getService();
+      const statuses = await service.isFeaturesEnabled(request);
+
       responseSuccess(context, toFeaturesResponseDto(statuses));
     } catch (error) {
       responseError(context, error as Error, 500, true);

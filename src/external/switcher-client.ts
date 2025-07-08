@@ -49,7 +49,7 @@ export default class SwitcherClient {
       Client.scheduleSnapshotAutoUpdate(Number(updateInterval), {
         success: (updated) => {
           if (updated) {
-            logger('INFO', 'SwitcherClient', `Snapshot updated: ${Client.snapshot?.data.domain.version}`);
+            logger('INFO', 'SwitcherClient', `Snapshot updated: ${Client.snapshotVersion}`);
           }
         },
         reject: (err) => {
@@ -59,9 +59,5 @@ export default class SwitcherClient {
     }
 
     return true;
-  }
-
-  static terminateSnapshotAutoUpdate(): void {
-    Client.terminateSnapshotAutoUpdate();
   }
 }
