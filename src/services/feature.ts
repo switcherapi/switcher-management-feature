@@ -15,8 +15,22 @@ class FeatureService {
     const featuresRes = await Promise.all(featuresReq.features.map(async (featureReq) => {
       const switcher = Client.getSwitcher();
 
-      if (featureReq?.parameters?.value) {
-        switcher.checkValue(featureReq.parameters.value);
+      const paramHandlers: Record<string, (value: string) => void> = {
+        value: (val) => switcher.checkValue(val),
+        number: (val) => switcher.checkNumeric(val),
+        date: (val) => switcher.checkDate(val),
+        time: (val) => switcher.checkTime(val),
+        payload: (val) => switcher.checkPayload(val),
+        regex: (val) => switcher.checkRegex(val),
+        network: (val) => switcher.checkNetwork(val),
+      };
+
+      if (featureReq?.parameters) {
+        Object.entries(featureReq.parameters).forEach(([key, val]) => {
+          if (paramHandlers[key]) {
+            paramHandlers[key](val);
+          }
+        });
       }
 
       return {

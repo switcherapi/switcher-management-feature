@@ -26,9 +26,6 @@ const testBody = (fn: (t: Deno.TestContext) => void | Promise<void>) => {
 Deno.test({
   name: 'Feature service integrated - it should return feature enabled - from snapshot cache',
   fn: testBody(async () => {
-    //given
-    await featureService.initialize(false);
-
     //test
     const response = await featureService.isFeatureEnabled({ feature: 'PLACEHOLDER' });
 
