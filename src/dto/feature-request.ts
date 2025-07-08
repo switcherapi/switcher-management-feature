@@ -1,7 +1,13 @@
 export type FeatureRequestDto = {
   feature: string;
   parameters?: {
-    value: string;
+    value?: string;
+    number?: string;
+    date?: string;
+    time?: string;
+    payload?: string;
+    regex?: string;
+    network?: string;
   };
 };
 
