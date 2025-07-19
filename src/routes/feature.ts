@@ -11,7 +11,7 @@ import { responseError, responseSuccess } from '../utils.ts';
 const router = new Router();
 let service: FeatureService;
 
-const { body, useErrorHandler } = ValidatorMiddleware.createMiddleware();
+const { body, check, useErrorHandler } = ValidatorMiddleware.createMiddleware();
 const { hasLenght, isArray } = ValidatorFn.createValidator();
 const featureNameConstraints = [hasLenght({ min: 3 })];
 const featureValueConstraints = [hasLenght({ max: 100 })];
@@ -22,10 +22,10 @@ useErrorHandler((context: Context, error: string) => {
 
 router.post(
   '/',
-  body([
-    { key: 'feature', validators: featureNameConstraints },
-    { key: 'parameters.value', validators: featureValueConstraints, optional: true },
-  ]),
+  body(
+    check('feature').ifValue(...featureNameConstraints),
+    check('parameters.value').maybe().ifValue(...featureValueConstraints),
+  ),
   async (context: Context) => {
     try {
       const request = toFeatureRequestDto(context);
@@ -41,11 +41,11 @@ router.post(
 
 router.post(
   '/group',
-  body([
-    { key: 'features', validators: [isArray({ min: 1 })] },
-    { key: 'features.*.feature', validators: featureNameConstraints },
-    { key: 'features.*.parameters.value', validators: featureValueConstraints, optional: true },
-  ]),
+  body(
+    check('features').ifValue(isArray({ min: 1 })),
+    check('features.*.feature').ifValue(...featureNameConstraints),
+    check('features.*.parameters.value').maybe().ifValue(...featureValueConstraints),
+  ),
   async (context: Context) => {
     try {
       const request = toFeaturesRequestDto(context);
