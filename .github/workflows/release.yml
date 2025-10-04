@@ -8,7 +8,6 @@ jobs:
   build-test:
     name: Build & Test
     runs-on: ubuntu-latest
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
 
     steps:
       - name: Git checkout
@@ -16,10 +15,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Deno v2.5.2
+      - name: Setup Deno v2.5.3
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.5.2
+          deno-version: v2.5.3
 
       - name: Verify formatting
         run: deno task fmt

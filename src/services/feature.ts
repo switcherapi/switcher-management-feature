@@ -26,11 +26,11 @@ class FeatureService {
       };
 
       if (featureReq?.parameters) {
-        Object.entries(featureReq.parameters).forEach(([key, val]) => {
+        for (const [key, val] of Object.entries(featureReq.parameters)) {
           if (paramHandlers[key]) {
             paramHandlers[key](val);
           }
-        });
+        }
       }
 
       return {
