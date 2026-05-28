@@ -12,9 +12,9 @@ const router = new Router();
 let service: FeatureService;
 
 const { body, check, useErrorHandler } = ValidatorMiddleware.createMiddleware();
-const { hasLenght, isArray } = ValidatorFn.createValidator();
-const featureNameConstraints = [hasLenght({ min: 3 })];
-const featureValueConstraints = [hasLenght({ max: 100 })];
+const { hasLength, isArray } = ValidatorFn.createValidator();
+const featureNameConstraints = [hasLength({ min: 3 })];
+const featureValueConstraints = [hasLength({ max: 100 })];
 
 useErrorHandler((context: Context, error: string) => {
   return responseError(context, new Error(error), 422);
