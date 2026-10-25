@@ -1,5 +1,3 @@
-version: '3.8'
-
 # TLS Enabled
 # volumes:
 #   switcherapi-tls:
