@@ -13,14 +13,14 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Setup Deno v2.8.1
+      - name: Setup Deno v2.9.7
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.8.1
+          deno-version: v2.9.7
 
       - name: Setup LCOV        
         run: sudo apt install -y lcov
@@ -35,7 +35,7 @@ jobs:
         run: deno task cover
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarqube-scan-action@v8.1.0
+        uses: sonarsource/sonarqube-scan-action@v8.3.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         if: env.SONAR_TOKEN != ''
@@ -77,12 +77,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: 'master'
 
       - name: Checkout Kustomize
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.ARGOCD_PAT }}
           repository: switcherapi/switcher-deployment

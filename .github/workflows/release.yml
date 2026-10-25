@@ -11,14 +11,14 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Setup Deno v2.8.1
+      - name: Setup Deno v2.9.7
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.8.1
+          deno-version: v2.9.7
 
       - name: Verify formatting
         run: deno task fmt
@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Docker meta
         id: meta
